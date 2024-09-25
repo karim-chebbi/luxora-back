@@ -21,4 +21,11 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
+// Cars routes
 app.use('/api/cars', require('./routes/carRoutes'))
+
+// Auth routes
+app.use('/api/auth', require('./routes/authRoutes'))
+
+// User routes
+app.use('/api/users', require('./routes/userRoutes'))
