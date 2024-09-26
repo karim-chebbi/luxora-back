@@ -60,7 +60,14 @@ exports.login = async (req, res) => {
           return  res.status(400).send({errors: [{msg: "Incorrect password"}]})
         }
 
-        res.status(200).send({success: [{msg: `Hello ${foundUser.name} Welcome Back !`}], foundUser})
+                const token = jwt.sign(
+                  {
+                    id: foundUser._id,
+                  },
+                  process.env.SECRET_KEY,
+                );
+
+        res.status(200).send({success: [{msg: `Hello ${foundUser.name} Welcome Back !`}], foundUser, token})
     } catch (error) {
         console.error(error.message);
         res.status(400).send({errors: [{msg: "Can not login"}]})
