@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
         let hashedPassword = await bcrypt.compare(password, foundUser.password)
 
         if (!hashedPassword) {
-          return  res.status(400).send({errors: [{msg: "Incorrect password"}]})
+          return  res.status(401).send({errors: [{msg: "Incorrect password"}]})
         }
 
                 const token = jwt.sign(
